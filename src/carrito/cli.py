@@ -22,8 +22,11 @@ def main():
         for linea in elegido.lineas:
             print(linea.producto.nombre, "x", linea.cantidad, precio_linea(linea))
         print("-")
-    for etiqueta, monto in resumen(elegido).items():
-        print(etiqueta, monto)
+    datos = resumen(elegido).items()
+    ancho_etiqueta = max(len(etiqueta) for etiqueta, _ in datos)
+    ancho_monto = max(len(str(monto)) for _, monto in datos)
+    for etiqueta, monto in datos:
+        print(f"{etiqueta:<{ancho_etiqueta}}  {monto:>{ancho_monto}}")
 
 
 if __name__ == "__main__":
